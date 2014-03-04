@@ -27,3 +27,7 @@ Revision history for Perl extension DBIx::Class::Tree::NestedSet.
     - fixed [cpan #59020], typos in code examples
     - got rid of perl-5.10 depency - seems to work fine on 5.8 with minor
       changes.
+
+xxxx
+    
+    - fix wrong level after take_cutting and dissolve
