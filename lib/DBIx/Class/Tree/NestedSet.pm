@@ -33,7 +33,8 @@ sub tree_columns {
             'root' => $class,
             \%join_cond,
             {
-                where => \"me.$left = 1",    #"
+                is_foreign_key_constraint => 0,
+                where                     => \"me.$left = 1",
             },
         );
 
@@ -41,8 +42,9 @@ sub tree_columns {
             'parent' => $class,
             \%join_cond,
             {
-                where => \"child.$left > me.$left AND child.$right < me.$right AND me.$level = child.$level - 1",    #"
-                from  => "$table me, $table child",
+                is_foreign_key_constraint => 0,
+                where                     => \"child.$left > me.$left AND child.$right < me.$right AND me.$level = child.$level - 1",    #"
+                from                      => "$table me, $table child",
             },
         );
 
@@ -166,7 +168,6 @@ sub delete {
                     $right => \"CASE WHEN $right > $p_rgt THEN $right - $diff ELSE $right END",    #"
                 }
             );
-
             $del_row->($self);
         }
     );
